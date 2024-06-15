@@ -1,0 +1,27 @@
+<!-- veterinaire/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    {% block header %}    
+    <h1>Détails du vétérinaire</h1>
+    {% endblock %}
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nom:</th>
+          <td>{{ veterinaire.nom }}</td>
+        </tr>
+        <tr>
+          <th>Spécialité:</th>
+          <td>{{ veterinaire.specialite }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td>{{ veterinaire.email }}</td>
+        </tr>
+        <!-- Ajouter d'autres informations spécifiques au vétérinaire -->
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+<!-- Rendezvous/list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-10">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <form class="d-flex" method="get">
+      <a href="{% url 'rendezvous-list' %}" class="btn btn-secondary mx-2">Act.</a>
+      <button class="btn btn-outline-success me-2" type="submit">Search</button>
+      <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search" name="q" aria-label="Search">
+      </div>  
+    </form> 
+      <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+              </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              </ul>
+          </div>
+      </div>
+     
+          <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Logout" class="btn btn-danger ">
+          </form>
+    
+</nav>
+
+
+  <div class="container">
+
+
+  
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="m-0">
+          <i class="fas fa-table me-1"></i>
+          Liste des Traitement
+        </h5>
+        <a href="{% url 'rendezvous-create' %}" class="btn btn-primary">Ajouter un rendez-vous</a>
+      </div>
+      <div class="card-body">
+
+    <h1>Liste des rendez-vous</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr class="table-primary" >
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Vétérinaire</th>
+          <th>Patient</th>
+          <th>Remarques</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rendezvous in object_list %}
+          <tr>
+            <td>{{ rendezvous.date }}</td>
+            <td>{{ rendezvous.heure }}</td>
+            <td>{{ rendezvous.veterinaire }}</td>
+            <td>{{ rendezvous.patient }}</td>
+            <td>{{ rendezvous.motif }}</td>
+            <td>
+                <a href="{% url 'rendezvous-update' rendezvous.id %}" class="btn btn-primary">Éditer</a>
+                <a href="{% url 'rendezvous-delete' rendezvous.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">Aucun rendez-vous trouvé.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+  </div>
+</div>
+</div>
+{% endblock %}

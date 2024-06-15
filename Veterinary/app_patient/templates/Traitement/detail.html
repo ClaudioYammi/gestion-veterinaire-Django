@@ -1,0 +1,25 @@
+<!-- traitement/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Détails du traitement</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nom:</th>
+          <td>{{ traitement.nom }}</td>
+        </tr>
+        <tr>
+          <th>Description:</th>
+          <td>{{ traitement.description }}</td>
+        </tr>
+        <tr>
+          <th>Date de début:</th>
+          <td>{{ traitement.date_debut }}</td>
+        </tr>
+        <!-- Ajouter d'autres informations spécifiques au traitement -->
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!-- proprietaire/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Détails du propriétaire</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nom:</th>
+          <td>{{ proprietaire.nom }}</td>
+        </tr>
+        <tr>
+          <th>Prénom:</th>
+          <td>{{ proprietaire.prenom }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td>{{ proprietaire.email }}</td>
+        </tr>
+        <!-- Ajouter d'autres informations spécifiques au propriétaire -->
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

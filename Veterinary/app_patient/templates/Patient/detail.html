@@ -1,0 +1,25 @@
+<!-- patient/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Détails du patient</h1>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>Nom:</th>
+          <td>{{ patient.nom }}</td>
+        </tr>
+        <tr>
+          <th>Espèce:</th>
+          <td>{{ patient.espece }}</td>
+        </tr>
+        <tr>
+          <th>Race:</th>
+          <td>{{ patient.race }}</td>
+        </tr>
+        <!-- Ajouter d'autres informations spécifiques au patient -->
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

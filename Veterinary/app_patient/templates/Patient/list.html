@@ -1,0 +1,116 @@
+<!-- Patient/list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-10">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <form class="d-flex" method="get">
+      <a href="{% url 'patient-list' %}" class="btn btn-secondary mx-2">Act.</a>
+      <button class="btn btn-outline-success me-2" type="submit">Search</button>
+      <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search" name="q" aria-label="Search">
+      </div>  
+    </form> 
+      <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+              </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              </ul>
+          </div>
+      </div>
+     
+          <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Logout" class="btn btn-danger ">
+          </form>
+    
+</nav>
+<!-- colonne---------------------------------------------------------------------------------------------- -->
+  <!-- <form action="" method="get">
+    <input type="text" name="q" placeholder="Search">
+      <button type="submit" class="btn btn-success"> Recherche </button>
+    <a href="{% url 'patient-list' %}" class="btn btn-secondary">Actualiser</a>
+  </form> -->
+
+  <div class="container">
+    
+
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="m-0">
+          <i class="fas fa-table me-1"></i>
+          Liste des patients
+        </h5>
+        <a href="{% url 'patient-create' %}" class="btn btn-primary">Ajouter un patient</a>
+      </div>
+      <div class="card-body">
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr class="table-primary">
+          <th>Nom</th>
+          <th>Espèce</th>
+          <th>Race</th>
+          <th>Âge</th>
+          <th>Sexe</th>
+          <th>Antécédents médicaux</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for patient in patients %}
+          <tr>
+            <td>{{ patient.nom_pa }}</td>
+            <td>{{ patient.espece }}</td>
+            <td>{{ patient.race }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.sexe }}</td>
+            <td>{{ patient.antecedants_medicaux }}</td>
+            <td>
+              <a href="{% url 'patient-update' patient.id %}" class="btn btn-primary">Éditer</a>
+              <a href="{% url 'patient-delete' patient.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">Aucun patient trouvé.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    
+    </div>
+  </div>
+    
+
+
+<!-- <div class="pagination">
+  {% if page_obj.has_previous %}
+    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a>
+  {% endif %}
+
+  <span class="current-page">{{ page_obj.number }}</span>
+
+  {% if page_obj.has_next %}
+    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+  {% endif %}
+</div>   -->
+
+
+
+     <div class="pagination">
+  {% if patients.has_previous %}
+    <a class="page-link" href="?page={{ patients.previous_page_number }}">Précédent</a>
+  {% endif %} 
+
+  <!-- <span class="current-page">{{ patients.number }}</span> -->
+
+  {% if patients.has_next %}
+    <a class="page-link" href="?page={{ patients.next_page_number }}">Suivant</a>
+  {% endif %}
+</div> 
+{% endblock %}

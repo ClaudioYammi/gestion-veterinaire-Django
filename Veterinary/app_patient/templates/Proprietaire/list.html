@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-10">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <form class="d-flex" method="get">
+      <a href="{% url 'proprietaire-list' %}" class="btn btn-secondary mx-2">Act.</a>
+      <button class="btn btn-outline-success me-2" type="submit">Search</button>
+      <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search" name="q" aria-label="Search">
+      </div>  
+    </form> 
+      <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+              </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              </ul>
+          </div>
+      </div>
+     
+          <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Logout" class="btn btn-danger ">
+          </form>
+    
+</nav>
+
+  <div class="container">
+
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="m-0">
+          <i class="fas fa-table me-1"></i>
+          Liste des proprietaires
+        </h5>
+        <a href="{% url 'proprietaire-create' %}" class="btn btn-primary">Ajouter un propriétaire</a>
+      </div>
+      <div class="card-body">
+
+    <h1>Liste des propriétaires</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr class="table-primary">
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Adresse</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>Sexe</th>
+          <th>Patient</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for proprietaire in proprietaires %}
+          <tr>
+            <td>{{ proprietaire.nom_pro }}</td>
+            <td>{{ proprietaire.prenom }}</td>
+            <td>{{ proprietaire.adresse }}</td>
+            <td>{{ proprietaire.email }}</td>
+            <td>{{ proprietaire.telephone }}</td>
+            <td>{{ proprietaire.sexe }}</td>
+            <td>{{ proprietaire.patient }}</td>
+            <td>
+                <a href="{% url 'proprietaire-update' proprietaire.id %}" class="btn btn-primary">Éditer</a>
+                <a href="{% url 'proprietaire-delete' proprietaire.id %}" class="btn btn-danger">Supprimer</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6">Aucun propriétaire trouvé.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </div>
+
+</div>
+</div>
+{% endblock %}

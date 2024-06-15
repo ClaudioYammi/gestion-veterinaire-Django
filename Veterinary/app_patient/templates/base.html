@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <base href="/Projet_MVC/">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1234567890abcdefghijklmnopqrstuvwxyz" crossorigin="anonymous" /> -->
+        <!-- <link rel="stylesheet" href="{% static 'css/all.min.css' %}"> -->
+        <!-- <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="sidebar-content">
+                        <div class="image mt-3">
+                            <img src="{% static 'img/icon.png' %}" alt="Image de profil">
+                        </div>
+                        <div name="row">
+                            <p class="profile-name">Gestion <br>Veterinaire</p>
+                        </div>
+                        <ul class="nav flex-column mt-5">
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">
+                                    <img src="" name="icon-set">Tableau de Bord
+                                </a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'veterinaire-list' %}">
+                                    <img src="" name="icon-set">Veterinaires
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'patient-list' %}">
+                                    <img src="" name="icon-set">Patient
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'rendezvous-list' %}">
+                                    <img src="" name="icon-set">Rendez-vous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'proprietaire-list' %}">
+                                    <img src="" name="icon-set">Propriétaire
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="{% url 'traitement-list' %}">
+                                  <img src="" name="icon-set">Traitement
+                              </a>
+                          </li>
+                        </ul>
+                        <div class="sidebar-footer mb-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% block content %}
+        
+        {% endblock %}
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
